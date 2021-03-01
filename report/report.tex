@@ -50,13 +50,14 @@ Together, they form the script which is validated transaction validation softwar
 <Signature from Private Key A> <Public Key A> OP_CHECKSIG
 \end{lstlisting}
 
-This script uses the CHECKSIG operater. This operator returns TRUE on the stack if the signature belongs to the correct key.
-
-\cite{book:1317587}
+This script uses the CHECKSIG operater. This operator returns TRUE on the stack if the signature belongs to the correct key. \cite{book:1317587}
 % subsection overview (end)
 
 \subsection{Problems} % (fold)
 \label{sub:problems}
+The P2PK is longer than P2PKH discussed in section \ref{sec:pay_to_public_key_hash_p2pkh}. This is because for people to make transactions, the would have to pass the whole publik key instead of the address, which is much longer. \cite{walker}
+\par
+Apart from that, P2PK is also more unsafe than P2PKH. Bitcoin uses the Elliptic Curve Digital Signature Algorithm (ECDA) signature scheme. This means the the bitcoins that use P2PK are only safe until the ECDA is cracked. An algorithm already exists that cracks the ECDA and is called Shor's Algorithm. However, to work effectively, this algorithm needs a quantum computer. 
 
 % subsection problems (end)
 
@@ -81,7 +82,7 @@ The validation scripts of the previous two scripts looks like:
 <Cafe Signature> <Cafe Public Key> OP_DUP OP_HASH160 <Cafe Public Key Hash> OP_EQUAL OP_CHECKSIG
 \end{lstlisting}
 
-If the unlocking script has a valid signature that corresponds to the publid key hash set as an encumbrance, the script returns TRUE on the stack. 
+If the unlocking script has a valid signature that corresponds to the publid key hash set as an encumbrance, the script returns TRUE on the stack. \cite{book:1317587}
 
 % section pay_to_public_key_hash_p2pkh (end)
 
