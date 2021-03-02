@@ -1,12 +1,18 @@
 \begin{thebibliography}{1}
 
+\bibitem{bitcoinscript}
+Bitcoin wiki script.
+\newblock {https://en.bitcoin.it/wiki/Script}, Last accessed on 2021-03-02.
+
 \bibitem{book:1317587}
 A.~M. Antonopoulos.
 \newblock {\em Mastering Bitcoin: Unlocking Digital Cryptocurrencies}.
 \newblock O'Reilly Media, 2014.
 
 \bibitem{walker}
-G.~Walker.
+{Walker, Greg}.
 \newblock P2pk.
+\newblock {https://learnmeabitcoin.com/technical/p2pk}, Last accessed on
+  2021-03-0.
 
 \end{thebibliography}

@@ -82,9 +82,59 @@ The validation scripts of the previous two scripts looks like:
 <Cafe Signature> <Cafe Public Key> OP_DUP OP_HASH160 <Cafe Public Key Hash> OP_EQUAL OP_CHECKSIG
 \end{lstlisting}
 
+
 If the unlocking script has a valid signature that corresponds to the publid key hash set as an encumbrance, the script returns TRUE on the stack. \cite{book:1317587}
 
 % section pay_to_public_key_hash_p2pkh (end)
+
+
+\section{Bitcoin Script Example 1}
+\paragraph{Question}
+If you were given, 767695935687, which is a binary encoding for a Bitcoin script ScriptPubKey, then what ScriptSig would you need to combine the ScriptPubSig with to execute or unlock the ScriptPubKey?
+Hint: 76 → OP\_DUP
+\paragraph{Solution}
+Changing the assembly \texttt{767695935687} to bitcoin script we get \texttt{OP\_DUP OP\_DUP OP\_MUL OP\_ADD OP\_6 OP\_EQUAL}.
+\par
+When we translate this to normal algebra we get $(x*x)+x=6$. Making $x$ subject of the formula:
+$$x^2 + x - 6 = 0$$
+$$(x + 3)(x - 2) = 0$$
+$$ x = -3, x = 2$$
+
+Therefore there are two signatures that will release cash and these are: \texttt{OP\_2} and \texttt{OP\_3 OP\_NEGATE}
+
+\section{Bitcoin Script Example 2}
+\paragraph{Question}
+Figure out what this script is doing: \texttt{6e879169a77ca787}
+
+\paragraph{Solution}
+Translating the assembly \texttt{} to bitcoin script, we get: \texttt{OP\_2DUP OP\_EQUAL OP\_NOT OP\_VERIFY OP\_SHA1 OP\_SWAP OP\_SHA1 OP\_EQUAL}. 
+
+\begin{center}
+	\resizebox{\textwidth}{!}{\begin{tabular}{ |c| c| }
+		\hline
+		\textbf{Word} & \textbf{Description} \\ 
+		\hline
+		OP\_2DUP & Duplicates the top two stack items.  \\  
+		\hline
+		OP\_EQUAL & Returns 1 if the inputs are exactly equal, 0 otherwise. \\
+		\hline
+		OP\_NOT & If the input is 0 or 1, it is flipped. Otherwise the output will be 0. \\
+		\hline
+		OP\_VERIFY & Marks transaction as invalid if top stack value is not true. The top stack value is removed.  \\
+		\hline
+		OP\_SHA1 & The input is hashed using SHA-1. \\
+		\hline
+		OP\_SWAP & The top two items on the stack are swapped. \\
+		\hline
+		OP\_SHA1 &  The input is hashed using SHA-1. \\
+		\hline
+		OP\_EQUAL & Returns 1 if the inputs are exactly equal, 0 otherwise. \\
+		\hline
+	\end{tabular}}
+\end{center}
+
+This script returns TRUE if a hash collision is found and FALSE otherwise.
+\cite{bitcoinscript}
 
 
 \bibliographystyle{abbrv}
